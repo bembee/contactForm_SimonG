@@ -13,14 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/contact')]
 class ContactMessageController extends AbstractController
 {
-    // #[Route('/', name: 'app_contact_message_index', methods: ['GET'])]
-    // public function index(ContactMessageRepository $contactMessageRepository): Response
-    // {
-    //     return $this->render('contact_message/index.html.twig', [
-    //         'contact_messages' => $contactMessageRepository->findAll(),
-    //     ]);
-    // }
-
     #[Route('/', name: 'app_contact_message_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ContactMessageRepository $contactMessageRepository): Response
     {
@@ -31,7 +23,7 @@ class ContactMessageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $contactMessageRepository->save($contactMessage, true);
 
-            return $this->redirectToRoute('app_contact_message_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_contact_message_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('contact_message/contact.html.twig', [

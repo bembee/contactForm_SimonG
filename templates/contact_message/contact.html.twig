@@ -3,5 +3,11 @@
 {% block title %}Contact Us{% endblock %}
 
 {% block body %}
-   
+   <div class="contact-form-wrapper d-flex justify-content-center">
+		<div class="contact-form">
+					<h5 class="title">Írj nekünk</h5>
+				{{ include('contact_message/_form.html.twig') }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

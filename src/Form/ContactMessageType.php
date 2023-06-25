@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\ContactMessage;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,12 +14,30 @@ class ContactMessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('email')
-            ->add('message')
-        ;
-    }
-
+        ->add('name', TextType::class, [
+            'attr' => array(
+                'class' => 'form-control rounded border-white mb-3 form-input',
+                'placeholder' => 'Neved',
+            ),
+            'label' => false
+        ])
+        ->add('email', TextType::class, [
+            'attr' => array(
+                'class' => 'form-control rounded border-white mb-3 form-input',
+                'placeholder' => 'E-mail címed',
+            ),
+            'label' => false
+        ])
+        ->add('message', TextareaType::class, [
+            'attr' => array(
+                'class' => 'form-control rounded border-white mb-3 form-text-area',
+                'rows' => 5,
+                'cols' => 30,
+                'placeholder' => 'Üzenet szövege',
+            ),
+            'label' => false
+        ]);
+}
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
