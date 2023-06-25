@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\ContactMessage;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +22,7 @@ class ContactMessageType extends AbstractType
             ),
             'label' => false
         ])
-        ->add('email', TextType::class, [
+        ->add('email', EmailType::class, [
             'attr' => array(
                 'class' => 'form-control rounded border-white mb-3 form-input',
                 'placeholder' => 'E-mail címed',

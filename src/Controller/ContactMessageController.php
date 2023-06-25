@@ -22,8 +22,12 @@ class ContactMessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $contactMessageRepository->save($contactMessage, true);
+            $this->addFlash('success', "Köszönjük szépen a kérdésedet.
+            Válaszunkkal hamarosan keresünk a megadott e-mail címen.");
 
             return $this->redirectToRoute('app_contact_message_new', [], Response::HTTP_SEE_OTHER);
+        } elseif ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('error', "Hiba! Kérjük töltsd ki az összes mezőt!");
         }
 
         return $this->render('contact_message/contact.html.twig', [
